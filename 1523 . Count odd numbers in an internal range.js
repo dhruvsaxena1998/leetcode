@@ -9,13 +9,15 @@
 // Explanation: The odd numbers between 8 and 10 are [9]
 
 const countOdds = (low, high) => {
-  let oddCount = 0;
+    if (low % 2 !== 0) {
+        low -= 1;
+    }
+    
+    if (high % 2 !== 0) {
+        high += 1;
+    }
 
-  for (let i = low; i <= high; i++) {
-    if (!(i % 2 === 0)) oddCount++;
-  }
-
-  return oddCount;
+    return (high - low) / 2;
 };
 
 console.log(countOdds(3, 7), "-> 3");
