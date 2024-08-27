@@ -18,21 +18,29 @@
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
 const setZeroes = (matrix) => {
-  const rows = Array(matrix.length).fill(false);
-  const cols = Array(matrix[0].length).fill(false);
+  // const rows = Array(matrix.length).fill(false);
+  // const cols = Array(matrix[0].length).fill(false);
 
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
+  const rows = new Set();
+  const cols = new Set();
+  const m = matrix.length
+  const n = matrix[0].length
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
       if (matrix[i][j] === 0) {
-        rows[i] = true;
-        cols[j] = true;
+        rows.add(i);
+        cols.add(j);
+        // rows[i] = true;
+        // cols[j] = true;
       }
     }
   }
 
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
-      if (rows[i] || cols[j]) {
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (rows.has(i) || cols.has(j)) {
+      // if (rows[i] || cols[j]) {
         matrix[i][j] = 0;
       }
     }
@@ -40,6 +48,11 @@ const setZeroes = (matrix) => {
 
   console.log(matrix);
 };
+
+/**
+ * using set instead of array and defining length of array at the start to loop upto
+ * can increase runtime as well as memory consumption
+ */
 
 setZeroes(
   [

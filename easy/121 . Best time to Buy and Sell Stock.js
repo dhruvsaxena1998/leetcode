@@ -13,7 +13,20 @@
 // Output: 0
 // Explanation: In this case, no transactions are done and the max profit = 0.
 
-const maxProfit = (prices) => {};
+const maxProfit = (prices) => {
+  let profit = 0;
+  let minimumAmount = prices[0]; // set minimum to first index
 
-console.log(maxProfit([7, 1, 5, 3, 6, 4]), 5);
-console.log(maxProfit([7, 6, 4, 3, 1]), 0);
+  for (let i = 1; i < prices.length; i++) {
+    // day[i] - minimumAmount
+    const cost = prices[i] - minimumAmount;
+
+    profit = Math.max(profit, cost);
+    minimumAmount = Math.min(minimumAmount, prices[i]);
+  }
+
+  return profit;
+};
+
+console.log(maxProfit([7, 1, 5, 3, 6, 4]), "->", 5);
+console.log(maxProfit([7, 6, 4, 3, 1]), "->", 0);
